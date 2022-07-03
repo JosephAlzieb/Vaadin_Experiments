@@ -1,0 +1,39 @@
+package com.example.experiment_1.layouts;
+
+import com.example.experiment_1.models.Person;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PersonDataLayout extends Div {
+
+  private static final List<Person> people = List.of(
+    new Person("Joe","Jojo", "aaaaa","1111")
+  );
+
+  private static Grid<Person> grid;
+  private static Div hint;
+
+  public PersonDataLayout() {
+
+    grid = new Grid<>(Person.class, false);
+    grid.setAllRowsVisible(true);
+    grid.addColumn(Person::getFirstName).setHeader("FirstName");
+    grid.addColumn(Person::getLastName).setHeader("LastName");
+    grid.addColumn(Person::getEmail).setHeader("Email");
+    grid.addColumn(Person::getTelefon).setHeader("Phone");
+
+
+    grid.setItems(people);
+
+    add(grid);
+  }
+
+}
