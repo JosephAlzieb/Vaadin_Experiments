@@ -1,6 +1,7 @@
 package com.example.experiment_1.layouts;
 
 import com.example.experiment_1.models.Person;
+import com.example.experiment_1.services.PersonService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
@@ -8,18 +9,14 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
-import java.util.List;
 
 public class PersonDataLayout extends Div {
-
-  private static List<Person> people = List.of(
-    new Person("Joe","Jojo", "aaaaa","1111")
-  );
-
+  private final PersonService personService;
   private static Grid<Person> grid;
   private static Div hint;
 
-  public PersonDataLayout() {
+  public PersonDataLayout(PersonService personService) {
+    this.personService = personService;
 
     grid = new Grid<>(Person.class, false);
     grid.setAllRowsVisible(true);
@@ -37,7 +34,7 @@ public class PersonDataLayout extends Div {
           button.setIcon(new Icon(VaadinIcon.TRASH));
         })).setHeader("Manage");
 
-    grid.setItems(people);
+    grid.setItems(personService.getPersonen());
 
     hint = new Div();
     hint.setText("No persons data has been saved");
@@ -49,14 +46,15 @@ public class PersonDataLayout extends Div {
   }
 
   private void removeInvitation(Person person) {
-    if (person == null)
+    if (person == null){
       return;
-    people.remove(person);
+    }
+    personService.deletePerson(person);
     this.refreshGrid();
   }
 
   private void refreshGrid() {
-    if (people.size() > 0) {
+    if (personService.getPersonen().size() > 0) {
       grid.setVisible(true);
       hint.setVisible(false);
       grid.getDataProvider().refreshAll();
