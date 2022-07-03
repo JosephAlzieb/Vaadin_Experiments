@@ -33,7 +33,14 @@ public class PersonDataLayout extends Div {
 
     grid.setItems(people);
 
-    add(grid);
+
+    hint = new Div();
+    hint.setText("No persons data has been saved");
+    hint.getStyle().set("padding", "var(--lumo-size-l)")
+        .set("text-align", "center").set("font-style", "italic")
+        .set("color", "var(--lumo-contrast-70pct)");
+
+    add(grid, hint);
   }
 
 }
