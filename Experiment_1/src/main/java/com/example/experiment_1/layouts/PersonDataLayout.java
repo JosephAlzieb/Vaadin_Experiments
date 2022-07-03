@@ -43,6 +43,7 @@ public class PersonDataLayout extends Div {
         .set("color", "var(--lumo-contrast-70pct)");
 
     add(grid, hint);
+    refreshGrid();
   }
 
   private void removeInvitation(Person person) {
