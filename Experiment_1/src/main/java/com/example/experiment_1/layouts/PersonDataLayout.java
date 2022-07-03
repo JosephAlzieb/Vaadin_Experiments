@@ -30,9 +30,16 @@ public class PersonDataLayout extends Div {
     grid.addColumn(Person::getEmail).setHeader("Email");
     grid.addColumn(Person::getTelefon).setHeader("Phone");
 
+    grid.addColumn(
+        new ComponentRenderer<>(Button::new, (button, person) -> {
+          button.addThemeVariants(ButtonVariant.LUMO_ICON,
+              ButtonVariant.LUMO_ERROR,
+              ButtonVariant.LUMO_TERTIARY);
+          button.addClickListener(e -> this.removeInvitation(person));
+          button.setIcon(new Icon(VaadinIcon.TRASH));
+        })).setHeader("Manage");
 
     grid.setItems(people);
-
 
     hint = new Div();
     hint.setText("No persons data has been saved");
