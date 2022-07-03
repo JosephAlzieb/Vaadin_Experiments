@@ -15,13 +15,14 @@ public class PersonFormLayout extends Div {
 
   private final PersonService personService;
 
-  public PersonFormLayout(PersonService personService){
-    this.personService = personService;
+  private TextField firstName = new TextField("First name");
+  private TextField lastName = new TextField("Last name");
+  private EmailField email = new EmailField("Email");
+  private NumberField numberField = new NumberField("Telefon");
 
-    TextField firstName = new TextField("First name");
-    TextField lastName = new TextField("Last name");
-    EmailField email = new EmailField("Email");
-    NumberField numberField = new NumberField("Telefon");
+  public PersonFormLayout(PersonService personService){
+
+    this.personService = personService;
 
     Button submit = new Button("Submit");
     submit.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -33,6 +34,8 @@ public class PersonFormLayout extends Div {
             email.getValue(),
             numberField.getValue().toString());
         personService.addPerson(person);
+        setFieldsToNull();
+
       });
 
     FormLayout formLayout = new FormLayout();
@@ -53,6 +56,13 @@ public class PersonFormLayout extends Div {
     formLayout.setColspan(submit, 2);
 
     add(formLayout);
+  }
+
+  private void setFieldsToNull() {
+    firstName.setValue(null);
+    lastName.setValue(null);
+    email.setValue(null);
+    numberField.setValue(null);
   }
 
 }
