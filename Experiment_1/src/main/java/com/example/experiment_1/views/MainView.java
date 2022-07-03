@@ -17,6 +17,8 @@ public class MainView extends HorizontalLayout {
 
     PersonDataLayout data = new PersonDataLayout();
 
+    setPadding(true);
+
     addAndExpand(form,data);
   }
 
