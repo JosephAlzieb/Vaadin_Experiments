@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PersonDataLayout extends Div {
 
-  private static final List<Person> people = List.of(
+  private static List<Person> people = List.of(
     new Person("Joe","Jojo", "aaaaa","1111")
   );
 
@@ -50,4 +50,21 @@ public class PersonDataLayout extends Div {
     add(grid, hint);
   }
 
+  private void removeInvitation(Person person) {
+    if (person == null)
+      return;
+    people.remove(person);
+    this.refreshGrid();
+  }
+
+  private void refreshGrid() {
+    if (people.size() > 0) {
+      grid.setVisible(true);
+      hint.setVisible(false);
+      grid.getDataProvider().refreshAll();
+    } else {
+      grid.setVisible(false);
+      hint.setVisible(true);
+    }
+  }
 }
