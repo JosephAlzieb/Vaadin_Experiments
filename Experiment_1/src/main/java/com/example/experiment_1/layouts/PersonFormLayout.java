@@ -1,5 +1,7 @@
 package com.example.experiment_1.layouts;
 
+import com.example.experiment_1.models.Person;
+import com.example.experiment_1.services.PersonService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -11,7 +13,10 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class PersonFormLayout extends Div {
 
-  public PersonFormLayout(){
+  private final PersonService personService;
+
+  public PersonFormLayout(PersonService personService){
+    this.personService = personService;
 
     TextField firstName = new TextField("First name");
     TextField lastName = new TextField("Last name");
@@ -20,6 +25,15 @@ public class PersonFormLayout extends Div {
 
     Button submit = new Button("Submit");
     submit.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    submit.addClickListener(
+      peson ->{
+        Person person = new Person(
+            firstName.getValue(),
+            lastName.getValue(),
+            email.getValue(),
+            numberField.getValue().toString());
+        personService.addPerson(person);
+      });
 
     FormLayout formLayout = new FormLayout();
     formLayout.add(
