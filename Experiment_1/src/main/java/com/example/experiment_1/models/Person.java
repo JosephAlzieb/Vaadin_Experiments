@@ -2,9 +2,14 @@ package com.example.experiment_1.models;
 
 
 import java.util.Objects;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collation = "person-collection")
 public class Person {
 
+  @Id
+  private Long id;
   private final String firstName;
   private final String lastName;
   private final String email;
@@ -39,10 +44,9 @@ public class Person {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof Person)) {
+    if (!(o instanceof Person person)) {
       return false;
     }
-    Person person = (Person) o;
     return Objects.equals(firstName, person.firstName) && Objects.equals(lastName,
         person.lastName) && email.equals(person.email) && Objects.equals(telefon,
         person.telefon);
