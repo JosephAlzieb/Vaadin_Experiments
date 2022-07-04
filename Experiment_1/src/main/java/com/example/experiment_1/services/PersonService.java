@@ -1,23 +1,29 @@
 package com.example.experiment_1.services;
 
 import com.example.experiment_1.models.Person;
-import java.util.ArrayList;
+import com.example.experiment_1.repositories.PersonRepository;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PersonService {
 
-  private static List<Person> personen = new ArrayList<>();
+  private final PersonRepository personRepository;
+
+  public PersonService(PersonRepository personRepository) {
+    this.personRepository = personRepository;
+  }
 
   public void addPerson(Person person){
-    personen.add(person);
+    personRepository.save(person);
   }
 
   public void deletePerson(Person person){
-    personen.remove(person);
+    personRepository.delete(person);
   }
 
   public List<Person> getPersonen(){
-    return List.copyOf(personen);
+    return personRepository.findAll();
   }
 
 }

@@ -11,11 +11,11 @@ import com.vaadin.flow.router.Route;
 public class MainView extends HorizontalLayout {
 
 
-  public MainView(){
+  public MainView(PersonService personService){
 
-    PersonFormLayout form = new PersonFormLayout(new PersonService());
+    PersonFormLayout form = new PersonFormLayout(personService);
 
-    PersonDataLayout data = new PersonDataLayout(new PersonService());
+    PersonDataLayout data = new PersonDataLayout(personService);
 
     setPadding(true);
 
