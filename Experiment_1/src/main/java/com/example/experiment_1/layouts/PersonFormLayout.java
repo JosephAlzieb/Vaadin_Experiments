@@ -34,7 +34,7 @@ public class PersonFormLayout extends Div {
             email.getValue(),
             numberField.getValue().toString());
         personService.addPerson(person);
-        setFieldsToNull();
+        clearFormFields();
 
       });
 
@@ -58,11 +58,11 @@ public class PersonFormLayout extends Div {
     add(formLayout);
   }
 
-  private void setFieldsToNull() {
-    firstName.setValue(null);
-    lastName.setValue(null);
-    email.setValue(null);
-    numberField.setValue(null);
+  private void clearFormFields() {
+    firstName.clear();
+    lastName.clear();
+    email.clear();
+    numberField.clear();
   }
 
 }
