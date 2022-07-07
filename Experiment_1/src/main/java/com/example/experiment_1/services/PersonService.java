@@ -15,7 +15,7 @@ public class PersonService {
   }
 
   public void addPerson(Person person){
-    personRepository.save(person);
+    personRepository.insert(person);
   }
 
   public void deletePerson(Person person){
