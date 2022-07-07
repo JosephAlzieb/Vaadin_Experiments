@@ -5,11 +5,11 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "person-collection")
+@Document
 public class Person {
 
   @Id
-  private Long id;
+  private String id;
   private final String firstName;
   private final String lastName;
   private final String email;
@@ -37,6 +37,14 @@ public class Person {
 
   public String getTelefon() {
     return telefon;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   @Override
