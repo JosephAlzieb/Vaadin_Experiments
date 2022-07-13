@@ -16,13 +16,8 @@ import java.util.List;
 @PageTitle("Dashboard")
 class DashboardView extends VerticalLayout {
 
-  List<Company> companies = List.of(
-   new Company("A", 11),
-   new Company("B", 110),
-   new Company("C", 1000),
-   new Company("D", 500),
-   new Company("E", 288)
-  );
+  List<Company> companies = Company.getDummyData();
+
   private DashboardView() {
     addClassName("dashboard-view");
     setDefaultHorizontalComponentAlignment(Alignment.CENTER);
