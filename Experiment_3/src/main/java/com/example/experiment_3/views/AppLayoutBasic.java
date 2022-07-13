@@ -31,19 +31,19 @@ public class AppLayoutBasic extends AppLayout {
   private Tabs getTabs() {
     Tabs tabs = new Tabs();
     tabs.add(
-        createTab(VaadinIcon.DASHBOARD, "Dashboard"),
-        createTab(VaadinIcon.CART, "Orders"),
-        createTab(VaadinIcon.USER_HEART, "Customers"),
-        createTab(VaadinIcon.PACKAGE, "Products"),
-        createTab(VaadinIcon.RECORDS, "Documents"),
-        createTab(VaadinIcon.LIST, "Tasks"),
-        createTab(VaadinIcon.CHART, "Analytics")
+        createTab(VaadinIcon.DASHBOARD, "Dashboard", DashboardView.class),
+        createTab(VaadinIcon.CART, "Orders",DashboardView.class),
+        createTab(VaadinIcon.USER_HEART, "Customers",DashboardView.class),
+        createTab(VaadinIcon.PACKAGE, "Products",DashboardView.class),
+        createTab(VaadinIcon.RECORDS, "Documents",DashboardView.class),
+        createTab(VaadinIcon.LIST, "Tasks",DashboardView.class),
+        createTab(VaadinIcon.CHART, "Analytics",DashboardView.class)
     );
     tabs.setOrientation(Tabs.Orientation.VERTICAL);
     return tabs;
   }
 
-  private Tab createTab(VaadinIcon viewIcon, String viewName) {
+  private Tab createTab(VaadinIcon viewIcon, String viewName, Class route) {
     Icon icon = viewIcon.create();
     icon.getStyle()
         .set("box-sizing", "border-box")
@@ -51,12 +51,18 @@ public class AppLayoutBasic extends AppLayout {
         .set("margin-inline-start", "var(--lumo-space-xs)")
         .set("padding", "var(--lumo-space-xs)");
 
-    RouterLink link = new RouterLink();
-    link.add(icon, new Span(viewName));
-    // Demo has no routes
-    link.setRoute(DashboardView.class);
+    RouterLink link = getRouterLink(viewName, icon, route);
+
     link.setTabIndex(-1);
 
     return new Tab(link);
+  }
+
+  private RouterLink getRouterLink(String viewName, Icon icon, Class route) {
+    RouterLink link = new RouterLink();
+    link.add(icon, new Span(viewName));
+    // Demo has no routes
+    link.setRoute(route);
+    return link;
   }
 }
