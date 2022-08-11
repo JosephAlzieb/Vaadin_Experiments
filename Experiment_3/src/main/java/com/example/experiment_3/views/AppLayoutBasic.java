@@ -32,7 +32,7 @@ public class AppLayoutBasic extends AppLayout {
     Tabs tabs = new Tabs();
     tabs.add(
         createTab(VaadinIcon.DASHBOARD, "Dashboard", DashboardView.class),
-        createTab(VaadinIcon.CART, "Orders",DashboardView.class),
+        createTab(VaadinIcon.CART, "Orders",OrdersView.class),
         createTab(VaadinIcon.USER_HEART, "Customers",DashboardView.class),
         createTab(VaadinIcon.PACKAGE, "Products",DashboardView.class),
         createTab(VaadinIcon.RECORDS, "Documents",DashboardView.class),
