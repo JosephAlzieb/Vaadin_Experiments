@@ -79,5 +79,25 @@ public class MainView extends VerticalLayout {
     expand(div);
   }
 
+  private Component createInputLayout() {
+    HorizontalLayout layout = new HorizontalLayout();
+    layout.setWidth("100%");
+
+    TextField messageField = new TextField();
+    Button send = new Button("Send");
+    send.setThemeName(ButtonVariant.LUMO_PRIMARY.getVariantName());
+    send.addClickShortcut(Key.ENTER);
+
+    send.addClickListener(click -> {
+      publisher.onNext(new ChatMessage(username, LocalDateTime.now(),messageField.getValue()));
+
+      messageField.clear();
+      messageField.focus();
+    });
+    messageField.focus();
+
+    layout.add(messageField, send);
+    layout.expand(messageField);
+    return layout;
   }
 }
