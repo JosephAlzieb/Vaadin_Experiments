@@ -35,6 +35,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <artifactId>reactor-core</artifactId>
+      <groupId>io.projectreactor</groupId>
+      <version>3.4.18</version>
+    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
