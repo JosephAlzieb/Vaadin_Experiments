@@ -62,6 +62,22 @@ public class MainView extends VerticalLayout {
   }
 
   private void startChat() {
+//    MessageList messageList = new MessageList();
+    Div div = new Div();
+
+    add(div, createInputLayout());
+
+    messages.subscribe(
+        m -> {
+          getUI().ifPresent(
+              ui -> ui.access(() -> {
+                div.add(new Paragraph(m.from() + ": " + m.message()));
+              })
+          );
+    });
+
+    expand(div);
+  }
 
   }
 }
