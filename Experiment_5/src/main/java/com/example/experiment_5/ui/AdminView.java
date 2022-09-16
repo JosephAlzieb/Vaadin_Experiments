@@ -18,7 +18,7 @@ public class AdminView extends VerticalLayout {
     crud.getGrid().setColumns("title", "published", "rating");
     crud.getCrudFormFactory().setVisibleProperties("title", "published", "rating");
     crud.setAddOperationVisible(false);
-//    crud.getCrudLayout().addToolbarComponent(new RouterLink("New book", NewView.class));
+    crud.getCrudLayout().addToolbarComponent(new RouterLink("New book", NewBookView.class));
 
     add(
         new H1("Admin view"),
