@@ -1,10 +1,11 @@
 package com.example.experiment_5.backend;
 
 import java.util.Collection;
+import org.springframework.stereotype.Service;
+import org.vaadin.crudui.crud.CrudListener;
 
-;
-
-public class BookService {
+@Service
+public class BookService implements CrudListener<Book> {
 
   private final BookRepository bookRepository;
 
@@ -12,14 +13,24 @@ public class BookService {
     this.bookRepository = bookRepository;
   }
 
+  @Override
   public Collection<Book> findAll() {
     return bookRepository.findAll();
   }
 
-  public void add(Book book) {
+  @Override
+  public Book add(Book book) {
     bookRepository.add(book);
+    return book;
   }
 
+  @Override
+  public Book update(Book book) {
+    bookRepository.add(book);
+    return book;
+  }
+
+  @Override
   public void delete(Book book) {
     bookRepository.delete(book);
   }
