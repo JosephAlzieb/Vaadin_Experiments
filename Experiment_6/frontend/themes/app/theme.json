@@ -1,0 +1,9 @@
+{
+  "lumoImports" : [ "typography", "color", "spacing", "badge", "utility" ],
+  "assets" : {
+    "@fontsource/prompt" : {
+      "*.css" : "@fontsource/prompt",
+      "files/*" : "@fontsource/prompt/files"
+    }
+  }
+}
